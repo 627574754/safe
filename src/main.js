@@ -205,7 +205,7 @@
 			var that = this;
 			$('#bankList').on('click', '.slt-item', function() {
 				that.initBank($(this).data('name'));
-				that.curBank = $(this).data('bid');
+				that.curBank = that.bankData($(this).data('bid')).id;
 				var par = {
 					"bank": that.curBank
 				};
@@ -293,7 +293,7 @@
 		//初始化绑定手机
 		initBindPhone: function(data) {
 			$('#phone').val(data.phone);
-			var codeWrap = $('#codeWrap');
+			var codeWrap = $('.codeWrap');
 			$('#process').removeClass('sus').attr('style','');
 			if(data.code) {
 				codeWrap.removeClass('none');
