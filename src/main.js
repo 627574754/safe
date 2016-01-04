@@ -206,7 +206,7 @@
 				notification.simple('如果担心账户安全，请在本次查询后修改密码');
 			})
 		},
-		formatCard() {
+		formatCard: function() {
 			$('#cardIpt').on('keypress', function() {
 				var elem = $(this);
 				var str = elem.val();	
@@ -229,7 +229,7 @@
 			var that = this;
 			$('#bankList').on('click', '.slt-item', function() {
 				that.initBank($(this).data('name'));
-				that.curBank = that.bankData($(this).data('bid')).id;
+				that.curBank = that.bankData[$(this).data('bid')].id;
 				var par = {
 					"bank": that.curBank
 				};
