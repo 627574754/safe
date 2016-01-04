@@ -196,6 +196,30 @@
 			this.getCodeImg();
 			//查询银行流水
 			this.queryList();
+			//黄色按钮帮助
+			this.bindHelp();
+			//格式化卡号输入
+			this.formatCard();
+		},
+		bindHelp: function() {
+			$('#helpBtn').on('click', function() {
+				notification.simple('如果担心账户安全，请在本次查询后修改密码');
+			})
+		},
+		formatCard() {
+			$('#cardIpt').on('keypress', function() {
+				var elem = $(this);
+				var str = elem.val();	
+					
+				if(str.length > 0){	
+					var c = str.replace(/\s/g,	"");
+					
+					if(str != "" && c.length > 4 && c.length % 4 == 1){
+						elem.val(str.substring(0, str.length - 1)+ " " + str.substring(str.length - 1, str.length));
+							
+					}
+				}
+			})
 		},
 		toPage: function(pn) {
 			this.wrapList.addClass('none').eq(pn).removeClass('none');
@@ -211,10 +235,10 @@
 				};
 				lib.ajax(lib.intf.getBankCode,par,function(repose){
 					if(!repose.success){
-	    				notification.simple(repose.message);
-	    				return;
-	    			}
-	    			// $('.identify_code_row').show();
+						notification.simple(repose.message);
+						return;
+					}
+					// $('.identify_code_row').show();
 					$('.srhCodeImg').eq(0).attr('src',repose.data.img);
 					that.sid=repose.data.sid;
 				}, "GET");
@@ -231,10 +255,10 @@
 				};
 				lib.ajax(lib.intf.getBankCode,par,function(repose){
 					if(!repose.success){
-	    				notification.simple(repose.msg);
-	    				return;
-	    			}
-	    			// $('.identify_code_row').show();
+						notification.simple(repose.msg);
+						return;
+					}
+					// $('.identify_code_row').show();
 					item.attr('src',repose.data.img);
 					that.sid = repose.data.sid;
 				}, "GET");
@@ -249,7 +273,7 @@
 				var ipts = form.find('input');
 				var par = {
 					domain:window.location.href.split('/dola/mpers/')[1].split('?')[0],
-					// domain: 12345,  //mock
+					// domain: 12345,//mock
 					bank: that.curBank,
 					sid:that.sid
 				};
@@ -259,7 +283,12 @@
 						notification.simple('请输入'+item.data('msg'));
 						return;
 					}
-					par[item.attr('name')] = item.val();
+					if(item.attr('name') == 'card') {
+						par[item.attr('name')] = item.val().replace(/\s/g,	"");
+					}
+					else {
+						par[item.attr('name')] = item.val();
+					}
 				};
 				that.toPage(4);
 				var process = $('#process');
@@ -273,20 +302,20 @@
 				lib.ajax(lib.intf.customerQuery,par,function(repose){
 					process.css('transition', '');
 					if(!repose.success){
-	    				process.addClass('error');
-	    				$('<p class="red">查询失败</p>').insertBefore('.stsMsg .tips');
-	    				$('.stsMsg .tips').html('请返回查询输入后查询');
-	    				return;
-	    			}
-	    			var data = repose.data;
-	    			if(data && (data.s == '2' || data.s == '3')) {
-	    				that.toPage(3);
-	    				that.initBindPhone(data);
-	    				return;
-	    			}			
-	    			process.addClass('sus');
-	    			$('.stsMsg .tips').html('');
-	    			$('.stsTip').html('报告已发送“宜人贷”请等待审核');
+						process.addClass('error');
+						$('<p class="red">查询失败</p>').insertBefore('.stsMsg .tips');
+						$('.stsMsg .tips').html('请返回查询输入后查询');
+						return;
+					}
+					var data = repose.data;
+					if(data && (data.s == '2' || data.s == '3')) {
+						that.toPage(3);
+						that.initBindPhone(data);
+						return;
+					}			
+					process.addClass('sus');
+					$('.stsMsg .tips').html('');
+					$('.stsTip').html('报告已发送“宜人贷”请等待审核');
 				});
 			});
 		},
@@ -335,14 +364,14 @@
 				lib.ajax(lib.intf.customerQueryByPhone,par,function(repose){
 					process.css('transition', '');
 					if(!repose.success){
-	    				process.addClass('error');
-	    				$('<p class="red">查询失败</p>').insertBefore('.stsMsg .tips');
-	    				$('.stsMsg .tips').html('请返回查询输入后查询');
-	    				return;
-	    			}		
-	    			process.addClass('sus');
-	    			$('.stsMsg .tips').html('');
-	    			$('.stsTip').html('报告已发送“宜人贷”请等待审核');
+						process.addClass('error');
+						$('<p class="red">查询失败</p>').insertBefore('.stsMsg .tips');
+						$('.stsMsg .tips').html('请返回查询输入后查询');
+						return;
+					}		
+					process.addClass('sus');
+					$('.stsMsg .tips').html('');
+					$('.stsTip').html('报告已发送“宜人贷”请等待审核');
 				});
 			});
 		},

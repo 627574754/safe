@@ -8,7 +8,7 @@
 <meta content="yes" name="apple-touch-fullscreen"/>
 <meta content="telephone=no,email=no" name="format-detection"/>
 <!-- <link rel="Shortcut Icon" href="favicon.png" type="image/x-icon" /> -->
-<link rel="stylesheet" type="text/css" href="assets/safe.css">
+<link rel="stylesheet" type="text/css" href="assets/safe.min.css">
 <title>安全桥</title>
 </head>
 <body>
@@ -45,7 +45,7 @@
 			<div class="title">选择银行</div>
 			<div class="slt-wrap" id="bankList">
 				<div class="slt-item" data-name="中国银行" data-bid="BOC">
-					<i class="item-logo logo1"></i><span class="txt">中国银行</span> <i class="arr"></i>
+					<i class="item-logo logo5"></i><span class="txt">中国银行</span> <i class="arr"></i>
 				</div>
 				<div class="slt-item" data-name="农业银行" data-bid="ABC">
 					<i class="item-logo logo2"></i><span class="txt">农业银行</span> <i class="arr"></i>
@@ -60,16 +60,16 @@
 					<i class="item-logo logo1"></i><span class="txt">招商银行</span> <i class="arr"></i>
 				</div>
 				<div class="slt-item" data-name="兴业银行" data-bid="CIB">
-					<i class="item-logo logo1"></i><span class="txt">兴业银行</span> <i class="arr"></i>
+					<i class="item-logo logo6"></i><span class="txt">兴业银行</span> <i class="arr"></i>
 				</div>
 				<div class="slt-item" data-name="光大银行" data-bid="CEB">
-					<i class="item-logo logo1"></i><span class="txt">光大银行</span> <i class="arr"></i>
+					<i class="item-logo logo7"></i><span class="txt">光大银行</span> <i class="arr"></i>
 				</div>
 				<div class="slt-item" data-name="民生银行" data-bid="CMBC">
-					<i class="item-logo logo1"></i><span class="txt">民生银行</span> <i class="arr"></i>
+					<i class="item-logo logo8"></i><span class="txt">民生银行</span> <i class="arr"></i>
 				</div>
 				<div class="slt-item" data-name="平安银行" data-bid="SPABANK">
-					<i class="item-logo logo1"></i><span class="txt">平安银行</span> <i class="arr"></i>
+					<i class="item-logo logo9"></i><span class="txt">平安银行</span> <i class="arr"></i>
 				</div>
 			</div>
 		</div>
@@ -93,17 +93,17 @@
 			<form class="form tabCnt" id="khForm">
 				<div class="group">
 					<label class="label">卡号：</label>
-					<div class="ipt"><input type="text" name="card" data-msg="卡号"></div>
+					<div class="ipt"><input type="text" name="card" data-msg="卡号" id="cardIpt"></div>
 				</div>
 				<div class="group">
 					<label class="label">查询密码(非交易密码)：</label>
 					<div class="ipt short"><input type="password" name="password" data-msg="查询密码"></div>
-					<i class="arr"></i>
+					<i class="arr" id="helpBtn"></i>
 				</div>
 				<div class="group">
 					<label class="label">验证码：</label>
 					<div class="ipt short"><input type="text" name="code" data-msg="验证码"></div>
-					<div class="vercode"><img class="srhCodeImg" src=""></div>
+					<div class="vercode"><img class="srhCodeImg" src="assets/images/process.gif"></div>
 				</div>
 			</form>
 			<!--一网通-->
@@ -124,7 +124,7 @@
 				<div class="group">
 					<label class="label">验证码：</label>
 					<div class="ipt short"><input name="code" type="text" data-msg="验证码"></div>
-					<div class="vercode"><img class="srhCodeImg" src=""></div>
+					<div class="vercode"><img class="srhCodeImg" src="assets/images/process.gif"></div>
 				</div>
 			</form>
 			<div class="button" id="searchBtn">确定</div>
